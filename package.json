@@ -1,0 +1,27 @@
+{
+  "name": "d3_calendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --progress --inline"
+  },
+  "author": "chris pachomski",
+  "license": "ISC",
+  "dependencies": {
+    "calendar": "^0.1.0",
+    "d3": "^4.1.1",
+    "node-sass": "^3.8.0",
+    "webpack": "^1.13.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "css-loader": "^0.23.1",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1"
+  }
+}
