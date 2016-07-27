@@ -78,14 +78,11 @@ export class PrettyCal {
 		//Add month
 		this.tableHeader.append('tr')
 						.append('td')
-						.attr('colspan', 4)
+						.attr('colspan', 7)
 						.text(Constants.monthNames[this.month])
-
-		//Add year
-		this.tableHeader.select('table thead tr')
-						.append('td')
-						.attr('colspan', 3)
+						.append('span')
 						.text(this.year)
+
 
 
 		//Add Days of the week
