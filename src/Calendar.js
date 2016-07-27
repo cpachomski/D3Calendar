@@ -24,18 +24,14 @@ export class PrettyCal {
 		prev.addEventListener('click', (e) => {
 			this.prevMonth();
 			this.generateWeeks();
-			console.log(this.date)
-			console.log(this.month + ' month')
-			console.log(this.year + ' year')
+			this.renderCal();
 
 		});
 
 		next.addEventListener('click', (e) => {
 			this.nextMonth();
 			this.generateWeeks();
-			console.log(this.date)
-			console.log(this.month + ' month')
-			console.log(this.year + ' year')
+			this.renderCal();
 		});
 	}
 
@@ -68,16 +64,29 @@ export class PrettyCal {
 		this.currentWeeks = this.cal.monthDays(this.year, this.month);
 	}
 
-	renderCal(weeks) {
-		d3.selectAll('tr').remove();
+	removeCal() {
+		d3.selectAll('thead').remove();
+		d3.selectAll('tbody').remove();
+	}
+
+	renderCal() {
+		this.removeCal();
+
 		this.tableHeader = this.table.append('thead');
 		this.tableBody = this.table.append('tbody');
 
 		//Add month
 		this.tableHeader.append('tr')
 						.append('td')
-						.attr('colspan', 7)
+						.attr('colspan', 4)
 						.text(Constants.monthNames[this.month])
+
+		//Add year
+		this.tableHeader.select('table thead tr')
+						.append('td')
+						.attr('colspan', 3)
+						.text(this.year)
+
 
 		//Add Days of the week
 		this.tableHeader.append('tr')
@@ -88,7 +97,7 @@ export class PrettyCal {
 						.text((d) => d.split('').splice(0,2).join(''));
 
 		//Add numerical cell for each day of the month
-		weeks.forEach((week) => {
+		this.currentWeeks.forEach((week) => {
 			this.tableBody.append('tr')
 				 .selectAll('td')
 				 .data(week)
@@ -97,8 +106,10 @@ export class PrettyCal {
 				 .attr('class', (d) => {
 				 	if (d <= 0) {
 				 		return 'empty'
-				 	} else if  (d === this.date) {
-				 		return 'selected-date'
+				 	} else if  (d === this.date &&
+				 				this.month === this.currentDate.getMonth() &&
+				 				this.year === this.currentDate.getFullYear()) {
+				 		return 'current-date'
 				 	} else {
 				 		return ''
 				 	}
