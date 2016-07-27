@@ -1,1 +1,3 @@
-import { Cal } from './Calendar';
+import { PrettyCal } from './Calendar';
+
+let cal = new PrettyCal('calendar');

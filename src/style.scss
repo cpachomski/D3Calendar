@@ -1,0 +1,15 @@
+#calendar {
+	width: 600px;
+	height: 400px;
+	border-collapse: collapse;
+}
+
+#calendar td {
+	border: 1px solid black;
+	text-align: right;
+	vertical-align: top;
+}
+
+#calendar td.empty {
+	border: none;
+}
