@@ -11,79 +11,41 @@ body {
 
 #calendar {
 	color: #333;
-	margin: 50px auto;
-	min-width: 650px;
-	min-height: 500px;
-	border-collapse: collapse;
+	display: block;
+	max-width: 600px;
+	margin: 25px auto;
 
-	td {
-		text-align: center;
-		padding: 10px;
-		min-height: 100px;
-		min-width: 75px;
+	.header {
+		.month {
+			display: block;
+			text-align: center;
+		}
 	}
 
-	thead {
-		tr {
-			&:first-child {	
-				background: $B;
-				color: $Y;
-				td {
-					padding-left: 35px;
-					height: 75px;
-					text-align: left;
-					vertical-align: bottom;
-					font-size: 50px;
-
-					span {
-						font-size: 20px;
-						color: $G;
-					}
-				}
-			}
-			&:nth-child(2) {
-				background-color: $G;
-				color: $W;
-			}
-		}
-
-
-	}
-
-	tbody {
-		background-color: $Y;
-		color: $G;
-		tr {
-			&:first-child {
-				td {
-					padding-top: 25px;
-				}
-			}
-		}
-		td {
-			text-align: right;
-			vertical-align: top;
-			&.empty {
-				border: none;
-			}
-			&.current-date {
-				background: $G;
-				color: $Y;
-			}
-
-			&:hover { 
-				background: $G;
-				color: $W;
-				cursor: pointer;
+	.weekdays {
+		margin: 25px 0px;
+		ul {
+			padding-left: 0px;
+			display: flex;
+			flex-direction: row;
+			li {
+				display: inline-block;
+				flex-grow: 7;
+				text-align: center;
 			}
 		}
 	}
+
 }
+
+
+
 
 controls {
 	position: relative;
 	display: block;
 	max-width: 600px;
+	min-height: 50px;
 	margin: 25px auto;
 	zoom: 1;
 	clear: both;

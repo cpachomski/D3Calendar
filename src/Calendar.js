@@ -65,50 +65,50 @@ export class PrettyCal {
 	}
 
 	removeCal() {
-		d3.selectAll('thead').remove();
-		d3.selectAll('tbody').remove();
+		d3.selectAll('#calendar div').remove();
 	}
 
 	renderCal() {
 		this.removeCal();
 
-		this.tableHeader = this.table.append('thead');
-		this.tableBody = this.table.append('tbody');
-
 		//Add month
-		this.tableHeader.append('tr')
-						.append('td')
-						.attr('colspan', 7)
-						.text(Constants.monthNames[this.month])
-						.append('span')
-						.text(this.year)
-
+		this.table.append('div')
+				  .attr('class', 'header')
+				  .append('span')
+				  .attr('class', 'month')
+				  .text(Constants.monthNames[this.month])
+				  .append('span')
+				  .attr('class', 'year')
+				  .text(this.year)
 
 
 		//Add Days of the week
-		this.tableHeader.append('tr')
-						.selectAll('td')
-						.data(Constants.dayNames)
-						.enter()
-						.append('td')
-						.text((d) => d.split('').splice(0,2).join(''));
+		this.table.append('div')
+				.attr('class', 'weekdays')
+				.append('ul')
+				.selectAll('li')
+				.data(Constants.dayNames)
+				.enter()
+				.append('li')
+				.text((d) => d.split('').splice(0,2).join(''));
 
 		//Add numerical cell for each day of the month
-		this.currentWeeks.forEach((week) => {
-			this.tableBody.append('tr')
-				 .selectAll('td')
+		this.currentWeeks.forEach((week, i) => {
+			this.table.append('div')
+				.attr('class', `week-${i + 1}`)
+				 .selectAll('div')
 				 .data(week)
 				 .enter()
-				 .append('td')
+				 .append('div')
 				 .attr('class', (d) => {
 				 	if (d <= 0) {
-				 		return 'empty'
+				 		return 'empty day'
 				 	} else if  (d === this.date &&
 				 				this.month === this.currentDate.getMonth() &&
 				 				this.year === this.currentDate.getFullYear()) {
-				 		return 'current-date'
+				 		return 'current-date day'
 				 	} else {
-				 		return ''
+				 		return 'day'
 				 	}
 				 })
 				 .text((d) => {
